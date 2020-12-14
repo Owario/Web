@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+@import url('https://fonts.googleapis.com/css?family=Bevan');
+@import url('https://fonts.googleapis.com/css?family=Sniglet');
+#title{margin:auto; width:110px;}
+#title a{font-family: 'Shrikhand', cursive; font-size:40px; color:#000000; text-decoration: none;}
+.slash-h{width:40%;margin:auto;display:block;text-align:center;border-bottom:1px solid #AAA;}
+#card-contener{height:45%;width:80%; margin:auto;}
+.card{width:33%; display:block; float:left; border:1px solid #AAA; margin: 15px auto 15px auto; border-radius:5px;}
+.card img{width:100%;}
+.grey{background-color:grey;}
+.card{position:relative;}
+img{display:block;}
+.overlay {position: absolute;bottom: 100%;left: 0;right: 0;background-color: rgba(255, 255, 255, 0.4);overflow: hidden;width: 100%;height:0;transition: .5s ease;}
+.card:hover .overlay {bottom: 0;height: 100%;}
+h3{text-align:center; font-family: 'Bevan', cursive;}
+.p-product{color:#000; margin:0px 30px; font-size:25px; font-family: 'Sniglet', cursive;}
+.price{display:block;}
+.share{font-size:1.79vw;text-align:center;magin:auto;}
+.fa-twitter{color:#1DA1F2;margin:auto 10px;}
+.fa-facebook{color:#3B5998;margin:auto 10px;}
+.price{background:#d62013; width:50%; text-align:center;padding:10px 0px;display:inline-block;}
+.buy{background:#15d80f; width:50%; text-align:center;padding:10px 0px;display:inline-block;color:#FFF;}
+.buy-info{color:#FFF;display:block;width:80%; margin:auto;}
+button {
+    background:#15d80f; width:50%; text-align:center;padding:10px 0px;display:inline-block;color:#FFF;
+  }
+@media screen and (max-width: 640px){.card{width:100%;}}
+@media screen and (max-width: 1200px){.card{width:49%;}}
+@media screen and (max-width: 1400px){.p-product{font-size:20px;}}
