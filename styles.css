@@ -43,6 +43,7 @@ a {
   font-family: 'Lora', serif;
   transition: .5s linear;
   width: 60%;
+  font-size: 25pt;
 }
 
 .main-page{
@@ -60,7 +61,7 @@ a {
 
 .div_form{
   width: 15%;
-  height: 250px;
+  height: 275px;
   background: rgb(255, 255, 255);
   border: 4px double black;
   padding: 10px;
@@ -74,7 +75,33 @@ a {
   border-bottom: 2px solid black;
 }
 
+#addrecipe{
+  width: 70%;
+  height: 70%;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  position: absolute;
+  background-image: url("https://i.pinimg.com/originals/45/6d/59/456d5935fbd53bafa11179bd58781923.jpg");
+  background-size: cover;
+  background-color: #cccccc28;
+  border-radius: 15px; 
+}
+
+#formmenu{
+  margin: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 15px; 
+  padding: 5px;
+  font-size: 15pt;
+  font-family: 'Lora', serif;
+}
+
 a:hover {background: #FFAB51}
+
+.drop{
+  display:block;
+}
 
 i {
   margin-right: 10px;
