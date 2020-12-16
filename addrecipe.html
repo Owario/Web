@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="home.html">Главная</a></li>
-            <li><a href="addrecipe.html">Добавить рецепт</a></li>
-            <li><a href="login.html">Авторизоваться</a></li>
-
+    <nav class="navigate">
+        <ul class="navigate">
+            <li class="navigate"><a class="navref" href="home.html">Главная</a></li>
+            <li class="navigate"><a class="navref" href="addrecipe.html">Добавить рецепт</a></li>
+            <li class="navigate"><a class="navref" href="myrecipes.html">Мои рецепты</a></li>
+            <li class="navigate"><a class="navref" href="login.html">Авторизоваться</a></li>
+ 
         </ul>
     </nav>
     <div class="top-line_left_block"><img class="Image" src="logo.png" width="100" height="56">LeCookies</div>
@@ -43,8 +44,6 @@
 
                 </div>
 
-                <br>
-
                 <div class="row">
                 
                     <div class="col-md-6">
@@ -62,22 +61,21 @@
                     </div>
                     
                 </div>
-
-                <br>    
+                
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1"><small>Краткое описание блюда:</small></label>
+                    <textarea class="form-control" id="recipe" rows="3" maxlength="200" required></textarea>
+                </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1"><small>Рецепт:</small></label>
                     <textarea class="form-control" id="recipe" rows="8" maxlength="400" required></textarea>
                 </div>
 
-                <br>
-
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="PermissionCheck1">
                     <label class="form-check-label" for="exampleCheck1"><small>Я разрешаю указать в качестве автора поста себя</small></label>
                 </div>
-
-                <br>
 
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="PermissionCheck2" required>

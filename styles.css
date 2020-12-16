@@ -5,7 +5,7 @@ body {
   background: rgba(206, 187, 21, 0.199);
 }
 
-ul {
+ul.navigate {
   right:0px;
   position: absolute;
   background: #FFD7A7;
@@ -15,16 +15,16 @@ ul {
   width: 40%;
 }
 
-li {
+li.navigate {
   display: inline-block;
-  width: 30%;
+  width: 22%;
 }
 
-nav {
+nav.navigate {
   display: block;
 }
 
-a {
+a.navref {
   text-decoration: none;
   font-family: 'Lora', serif;
   padding: 1em;
@@ -61,7 +61,7 @@ a {
 
 .div_form{
   width: 15%;
-  height: 275px;
+  height: 20%;
   background: rgb(255, 255, 255);
   border: 4px double black;
   padding: 10px;
@@ -97,7 +97,7 @@ a {
   font-family: 'Lora', serif;
 }
 
-a:hover {background: #FFAB51}
+a.navref:hover {background: #FFAB51}
 
 .drop{
   display:block;
@@ -107,3 +107,57 @@ i {
   margin-right: 10px;
 }
 
+.isDisabled{
+  -webkit-user-select: none; 
+  color:currentColor;
+  cursor:not-allowed;
+  pointer-events:none; 
+  opacity: 0.4;
+  text-decoration: none;
+}
+
+.loginmenu{
+  width: 30%;
+  height: 25%;
+  margin-top: 5%;
+  margin-left: 35%;
+  margin-right: 35%;
+  position: absolute;
+  border-radius: 15px; 
+  background-color: snow;
+  padding: 10px;
+}
+
+#reg{
+  margin-left: 20px;
+  display: inline;
+}
+
+.regmenu{
+  width: 30%;
+  height: 35%;
+  margin-top: 5%;
+  margin-left: 35%;
+  margin-right: 35%;
+  position: absolute;
+  border-radius: 15px; 
+  background-color: snow;
+  padding: 10px;
+  display: none;
+}
+
+.card{
+  border: 2px solid black;
+}
+
+.card-text{
+  height: 150px;
+}
+
+.like-button{
+  border: 2px solid black;
+}
+
+.col-mb-4{
+  margin-top: 5%;
+}

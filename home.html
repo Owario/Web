@@ -11,11 +11,12 @@
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="home.html">Главная</a></li>
-            <li><a href="addrecipe.html">Добавить рецепт</a></li>
-            <li><a href="login.html">Авторизоваться</a></li>
+    <nav class="navigate">
+        <ul class="navigate">
+            <li class="navigate"><a class="navref" href="home.html">Главная</a></li>
+            <li class="navigate" id="torecipe"><a class="navref" href="addrecipe.html">Добавить рецепт</a></li>
+            <li class="navigate" id="tomyrecipes"><a class="navref" href="myrecipes.html">Мои рецепты</a></li>
+            <li class="navigate"><a class="navref" href="login.html">Авторизоваться</a></li>
 
         </ul>
     </nav>
@@ -23,35 +24,10 @@
     <div class="block_line"></div>
 
     <div class="div_form">
-        <form role="form">
-            <label>Для получения данных о пользователе авторизируйтесь</label>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Введите e-mail">
-
-            <div class="form-group">
-                <label for="password">password</label>
-                <input type="password" class="form-control" id="password" placeholder="Введите пароль">
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <br>
-                    <input type="submit" class="btn btn-primary" value="Войти">
-                </div>
-
-                <div class="col-md-4">
-                    <br>
-                    <input type="submit" class="btn btn-primary" value="Куда">
-                </div>
-
-                <div class="col-md-4">
-                    <br>
-                    <input type="submit" class="btn btn-primary" value="Зачем">
-                </div>
-            </div>
-
-
+        <form role="form" id="sidestat">
+            <label>Вы вошли как гость</label>
+            <br><br>
+            <label>Для получения полного доступа к сайту авторизируйтесь</label>
             </div>
         </form>
     </div>
@@ -60,77 +36,36 @@
 
     <div class="main-page">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4" style="background-color:aqua;">First</div>
-                <div class="col-md-4" style="background-color:rgb(0, 255, 34);">First</div>
-                <div class="col-md-4" style="background-color:rgb(255, 1, 221);">First</div>
-            </div>
-            <button class="btn btn-default">Button</button>
-            <input type="submit" class="btn btn-primary" value="Чего">
-            <input type="button" class="btn btn-success" value="Чего 2">
-            <button class="btn btn-warning">Button</button>
-            <button class="btn btn-danger">Button</button>
-            <button class="btn btn-default btn-lg disabled">Button</button>
+
+            <input type="button" class="btn btn-success mybutton2" value="Чего 2">
+            <input type="button" class="btn btn-success" value="Чего 2" id="Пук">
 
 
+            <div class="row row-cols-1 row-cols-md-2" id="mainbox">
+                <!---->
+                <div class="col-mb-4" id="1">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Болгарские пельмени с поджаркой</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Болгарская кухня</h6>
+                            <p class="card-text sized">Some quick example tbhgfhgfhgfhgfhgfhgfhgfhgf.</p>
+                            <p>
+                                <a href="#" class="btn btn-primary" role="button">Подробнее</a>
+                                <a href="#" class="btn btn-default like-button" role="button">
+                                (<span class="like-count">6</span>)Нравится
+                                </a>
+                            </p>
+                            <div class="card-footer">
+                                <small class="text-muted">Рецепт написан: coookiezy</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+                
 
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>    
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
-            <p>First Paragraph</p>
-            <p>Second Paragraph</p>
-            <p>Yet one more Paragraph</p>
+                
+            </div>   
         </div>
     </div>
 
