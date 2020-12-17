@@ -18,7 +18,66 @@ window.onload = function(){
     //Изменять авторизоваться на выйти из учетной записи
     //добавлять статистику на главную страницу
     //подгружать 
+};
+
+$(document).ready(function()
+{
+    var href = window.location.href.split('/');    
+    var txt = href[href.length-1];
+    if (txt==="myrecipes.html"){
+
+        for(i=0;i<10;++i){
+            $("#mymainbox").append(CreateObjectCard());
+        }
+
+        $("#mymainbox").append(CreateObjectCard());
+
+        $(".mybutton").click(function(event){
+            $(".recipemore").modal("show");
+            //добавить модельное окно
+            alert("a");
+
+            event.preventDefault()
+        });
+
+        $(".like-button").remove();
+        $(".card-footer").remove();
+        
+    }
+    else{
+
+        for(i=0;i<10;++i){
+            $("#mainbox").append(CreateObjectCard());
+        }
+
+        $(".like-button").click(function(event){
+            var like_count =$(this).find(".like-count");
+            var likes = parseInt(like_count.text());
+        
+            if ($(this).hasClass('liked')){
+                like_count.text(likes-1);
+                $(this).addClass('btn-default').removeClass('btn-success');
+            }else{
+                like_count.text(likes+1);
+                $(this).addClass('btn-success').removeClass('btn-default');
+            }
+            $(this).toggleClass('liked');
+            event.preventDefault();
+            //Отправлять на сервер
+        });
+
+        $(".mybutton").click(function(event){
+            var recipe_id = $(this).closest('.col-mb-4').attr('id');
+            alert(recipe_id);
+            //получить подробные данные по айди
+            $(".recipemore").modal("show");
+            event.preventDefault();
+        });
+
+    }
 }
+)
+
 
 $("#Пук").click(function(){
     $("#sidestat label").remove();
@@ -26,46 +85,9 @@ $("#Пук").click(function(){
     $("#sidestat").append("<p>Some text.</p>")
 });
 
-function CheckLogin(){
-    alert("checked");
-}
 
-function ShowRegMenu(){
-    $(".loginmenu").css({"display": "none"});
-    $(".regmenu").css({"display": "block"});
-}
-
-function ShowLogMenu(){
-    $(".regmenu").css({"display": "none"});
-    $(".loginmenu").css({"display": "block"});
-}
-
-$(".like-button").click(function(event){
-    var like_count =$(this).find(".like-count");
-    var likes = parseInt(like_count.text());
-
-    if ($(this).hasClass('liked')){
-        like_count.text(likes-1);
-        $(this).addClass('btn-default').removeClass('btn-success');
-    }else{
-        like_count.text(likes+1);
-        $(this).addClass('btn-success').removeClass('btn-default');
-    }
-    $(this).toggleClass('liked');
-    event.preventDefault()
-    //Отправлять на сервер
-});
-
-
-$(".mybutton").click(function(event){
-
-    //добавить модельное окно
-    $("#1").remove();
-    event.preventDefault()
-});
-
-$(".mybutton2").click(function(event){
-    $("#mainbox").append($(                
+function CreateObjectCard(){
+    return $(                
         '<div class="col-mb-4" id="1">'+
             '<div class="card">'+
                 '<div class="card-body">'+
@@ -73,8 +95,8 @@ $(".mybutton2").click(function(event){
                     '<h6 class="card-subtitle mb-2 text-muted">Болгарская кухня</h6>'+
                     '<p class="card-text sized">Some quick example tbhgfhgfhgfhgfhgfhgfhgfhgf.</p>'+
                     '<p>'+
-                        '<a href="#" class="btn btn-primary" role="button">Подробнее</a>'+
-                        '<a href="#" class="btn btn-default like-button" role="button">'+
+                        '<a href="" class="btn btn-primary mybutton" role="button">Подробнее</a>'+
+                        '<a href="" class="btn btn-default like-button" role="button">'+
                         '(<span class="like-count">6</span>)Нравится'+
                         '</a>'+
                     '</p>'+
@@ -84,6 +106,6 @@ $(".mybutton2").click(function(event){
                 '</div>'+
             '</div>'+
         '</div>'
-    ));
-    event.preventDefault()
-});
+    );
+};
+

@@ -8,6 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+
 </head>
 
 <body>
@@ -17,14 +19,28 @@
             <li class="navigate"><a class="navref" href="home.html">Главная</a></li>
             <li class="navigate"><a class="navref" href="addrecipe.html">Добавить рецепт</a></li>
             <li class="navigate"><a class="navref" href="myrecipes.html">Мои рецепты</a></li>
-            <li class="navigate"><a href="login.html">Авторизоваться</a></li>
+            <li class="navigate"><a class="navref" href="login.html">Авторизоваться</a></li>
 
         </ul>
     </nav>
     <div class="top-line_left_block"><img class="Image" src="logo.png" width="100" height="56">LeCookies</div>
     <div class="block_line"></div>
 
-<script src="scripts.js"></script>
+    <div class="main-page">
+        <div class="container-fluid">
+
+            <input type="button" class="btn btn-success mybutton2" value="Чего 2">
+            <input type="button" class="btn btn-success" value="Чего 2" id="Пук">
+            <div>Здесь была ваша сортировка</div>
+
+
+            <div class="row row-cols-1 row-cols-md-2" id="mymainbox">                
+
+                
+            </div>   
+        </div>
+    </div>
+
 </body>
 
 </html>

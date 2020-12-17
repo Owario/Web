@@ -23,21 +23,29 @@
     <div class="top-line_left_block"><img class="Image" src="logo.png" width="100" height="56">LeCookies</div>
     <div class="block_line"></div>
 
-    <div class="loginmenu">
+    <div class="regmenu">
         <form>
             <div class="form-group">
+                <label for="exampleInputEmail1">Ваш псевдоним</label>  
+                <input type="name" class="form-control" id="Nickname" placeholder="Enter nickname" required>
+            </div>
+            <br>
+
+            <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>  
-              <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+              <input type="email" class="form-control" id="InputEmail2" aria-describedby="emailHelp" placeholder="Enter email" required>
               <small id="emailHelp" class="form-text text-muted">Ваша электронная почта под защитой</small>
             </div>
+
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="InputPassword1" placeholder="Password" required>
+              <input type="password" class="form-control" id="InputPassword2" placeholder="Password" required>
             </div>
 
             <br>
-            <button type="submit" class="btn btn-success" onclick="CheckLogin()">Войти</button>
-            <button type="button" class="btn btn-secondary" onclick="document.location='registration.html'">Регистрация</button>
+            <button type="submit" class="btn btn-success" onclick="CheckReg()">Зарегистироваться</button>
+            <button type="button" class="btn btn-secondary" onclick="document.location='login.html'">Уже есть аккаунт</button>
+
           </form>
     </div>
 
