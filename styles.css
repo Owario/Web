@@ -12,7 +12,7 @@ ul.navigate {
   padding-right: 0;
   padding: 0;
   list-style: none;  
-  width: 40%;
+  width: 50%;
 }
 
 li.navigate {
@@ -42,7 +42,7 @@ a.navref {
   text-decoration: none;
   font-family: 'Lora', serif;
   transition: .5s linear;
-  width: 60%;
+  width: 50%;
   font-size: 25pt;
 }
 
@@ -155,8 +155,27 @@ i {
 
 .like-button{
   border: 2px solid black;
+  margin-bottom: 5px;
 }
 
 .col-mb-4{
   margin-top: 5%;
+}
+
+#send{
+  background-color: coral;
+  padding: 5px;
+  border-radius: 5px; 
+}
+
+
+.mybt{
+  border: 2px solid black;
+  padding: 6px;
+  margin-right: 5px;
+}
+
+.inserthere{
+  margin: 20px;
+  word-break:break-all;
 }
