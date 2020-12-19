@@ -13,7 +13,9 @@ window.onload = function(){
             $("#torecipe").addClass("isDisabled");
             $("#tomyrecipes").addClass("isDisabled");
         }
-    }else{
+    }
+    else
+    {
         if (txt==="login.html"||txt==="registration.html"){
             localStorage.clear();
             $("#torecipe").addClass("isDisabled");
