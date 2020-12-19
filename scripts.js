@@ -34,24 +34,7 @@ $(document).ready(function()
     var href = window.location.href.split('/');    
     var txt = href[href.length-1];
     if (txt==="myrecipes.html"){
-
-        for(i=0;i<10;++i){
-            $("#mymainbox").append(CreateObjectCard());
-        }
-
-        $("#mymainbox").append(CreateObjectCard());
-
-        $(".mybutton").click(function(event){
-            $(".recipemore").modal("show");
-            //добавить модельное окно
-            alert("a");
-
-            event.preventDefault()
-        });
-
-        $(".like-button").remove();
-        $(".card-footer").remove();
-        
+        GetMyRecipes();
     }
     else{
         if (txt==="login.html"||txt==="registration.html"){
@@ -62,7 +45,7 @@ $(document).ready(function()
             if (txt==="home.html")
             {
                 GetAllRecipes();
-                
+
             }
         }
 

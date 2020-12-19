@@ -10,6 +10,7 @@ async function CheckLogin(){
         user_data).then((response) => {
             data2=JSON.stringify(response);
             type=0;
+            alert(data2);
             data2=JSON.parse(data2,function(k, v) {
                 if (k==='statusCode' && v===201){type=1;}
                 if (k==='body'){
@@ -17,6 +18,7 @@ async function CheckLogin(){
                         alert(v);
                     }else{
                         localStorage.setItem('user_token',v);
+                        alert(v);
                     }
                 }
             });
@@ -109,20 +111,37 @@ async function GetAllRecipes(){
     } 
 
     $(".like-button").click(function(event){
+        if (localStorage.getItem('user_token')===null){
+            alert("Сначала авторизируйтесь!")
+        }
+        else{
         var like_count =$(this).find(".like-count");
         var likes = parseInt(like_count.text());
     
         if ($(this).hasClass('liked')){
             like_count.text(likes-1);
             $(this).addClass('btn-default').removeClass('btn-success');
+            id=$(this).attr("id")
+            id=id.substring(1,id.length);
+
+            alert(id);
+            alert(likes-1);
+            LikeUpdate(id,likes-1)
+
         }else{
             like_count.text(likes+1);
             $(this).addClass('btn-success').removeClass('btn-default');
+            id=$(this).attr("id")
+            id=id.substring(1,id.length);
+
+            alert(id);
+            alert(likes+1);
+            LikeUpdate(id,likes+1)
         }
         $(this).toggleClass('liked');
         event.preventDefault();
-        //Отправлять на сервер
-    });
+        }
+});
 
 
     $("#Пук").click(function(){
@@ -131,6 +150,42 @@ async function GetAllRecipes(){
         $("#sidestat").append("<p>Some text.</p>")
     });  
 }
+
+
+async function GetMyRecipes(){
+    if (localStorage.getItem('user_token')!==null){
+        user_data={
+            "token": localStorage.getItem('user_token')
+        }
+
+        response = await axios.post('https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/myrecipes',user_data);
+        data = await JSON.stringify(response);
+        var name = new String(data);
+        if (name.indexOf('body')!==-1){
+            name=name.substring(name.indexOf('body'), name.length); 
+            name=name.substring(name.indexOf('{'), name.indexOf(']')); 
+            work=true;
+            while(work){
+                nametofunc=name.substring(name.indexOf('{'),name.indexOf('}')+1);
+                $("#mymainbox").append(CreateObjectCard(nametofunc));
+                name=name.substring(name.indexOf('}')+2,name.length);
+                if (name.indexOf('}')+2>=name.length) work=false;
+            } 
+
+            $(".card-footer").remove();
+            $(".like-button").remove();
+        }
+    }
+}
+
+async function LikeUpdate(id,likes){
+    data={'id': id.toString(),'likes':likes.toString()};
+    response = await axios.post('https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/like',data);
+}
+
+
+
+
 
 
 function showModal(id){
@@ -171,7 +226,7 @@ function CreateObjectCard(name){
                     '<p class="card-text sized">'+ recipe_description + '</p>'+
                     '<p>'+
                         '<input type="button" class="mybt" value="Подробнее" onclick="showModal('+recipe_id+')">'+
-                        '<a href="" class="btn btn-default like-button" role="button">'+
+                        '<a href="" class="btn btn-default like-button" id="0'+recipe_id+'" role="button">'+
                         '(<span class="like-count">'+ like_counts12 +'</span>)Нравится'+
                         '</a>'+
                     '</p>'+
