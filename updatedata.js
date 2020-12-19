@@ -2,23 +2,23 @@
 
 async function CheckLogin(){
     user_data={
-        mail: document.getElementById("InputEmail1").value,
-        password: document.getElementById("InputPassword1").value
+        'mail': document.getElementById("InputEmail1").value,
+        'password': document.getElementById("InputPassword1").value
     }
     await axios.post(
         'https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/login',
         user_data).then((response) => {
             data2=JSON.stringify(response);
             type=0;
-            alert(data2);
+            var name = new String(data2);
+            if (name.indexOf("No such user exists")!==-1) alert("No such user exists");
+            if (name.indexOf("Incorrect password")!==-1) alert("Incorrect password");
             data2=JSON.parse(data2,function(k, v) {
                 if (k==='statusCode' && v===201){type=1;}
                 if (k==='body'){
                     if (type===1){
-                        alert(v);
                     }else{
                         localStorage.setItem('user_token',v);
-                        alert(v);
                     }
                 }
             });
@@ -100,14 +100,15 @@ async function GetAllRecipes(){
     response = await axios.get('https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/recipes');
     data = await JSON.stringify(response);
     var name = new String(data);
+    if (name.indexOf('body')==-1) return;
     name=name.substring(name.indexOf('body'), name.length); 
     name=name.substring(name.indexOf('{'), name.indexOf(']')); 
     work=true;
     while(work){
+        if (name.indexOf('}')+2>=name.length) work=false;
         nametofunc=name.substring(name.indexOf('{'),name.indexOf('}')+1);
         $("#mainbox").append(CreateObjectCard(nametofunc));
         name=name.substring(name.indexOf('}')+2,name.length);
-        if (name.indexOf('}')+2>=name.length) work=false;
     } 
 
     $(".like-button").click(function(event){
@@ -124,9 +125,7 @@ async function GetAllRecipes(){
             id=$(this).attr("id")
             id=id.substring(1,id.length);
 
-            alert(id);
-            alert(likes-1);
-            LikeUpdate(id,likes-1)
+            LikeUpdate(0,id,likes-1)
 
         }else{
             like_count.text(likes+1);
@@ -134,21 +133,13 @@ async function GetAllRecipes(){
             id=$(this).attr("id")
             id=id.substring(1,id.length);
 
-            alert(id);
-            alert(likes+1);
-            LikeUpdate(id,likes+1)
+            LikeUpdate(1,id,likes+1)
         }
         $(this).toggleClass('liked');
         event.preventDefault();
         }
 });
 
-
-    $("#Пук").click(function(){
-        $("#sidestat label").remove();
-        $("#sidestat br").remove();
-        $("#sidestat").append("<p>Some text.</p>")
-    });  
 }
 
 
@@ -166,26 +157,18 @@ async function GetMyRecipes(){
             name=name.substring(name.indexOf('{'), name.indexOf(']')); 
             work=true;
             while(work){
+                if (name.indexOf('}')+2>=name.length) 
+                    {work=false;}
                 nametofunc=name.substring(name.indexOf('{'),name.indexOf('}')+1);
                 $("#mymainbox").append(CreateObjectCard(nametofunc));
                 name=name.substring(name.indexOf('}')+2,name.length);
-                if (name.indexOf('}')+2>=name.length) work=false;
             } 
 
             $(".card-footer").remove();
-            $(".like-button").remove();
+            $(".like-button").addClass("isDisabled");
         }
     }
 }
-
-async function LikeUpdate(id,likes){
-    data={'id': id.toString(),'likes':likes.toString()};
-    response = await axios.post('https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/like',data);
-}
-
-
-
-
 
 
 function showModal(id){
@@ -238,3 +221,104 @@ function CreateObjectCard(name){
         '</div>'
     );
 };
+
+
+async function LikeUpdate(type,id,likes){
+    if (localStorage.getItem('likestring')===null) {CheckLike();}
+    if (type==1){
+        newlikestring = localStorage.getItem('likestring');
+        newlikestring = newlikestring+id.toString()+'/';
+        localStorage.removeItem('likestring');
+        localStorage.setItem('likestring',newlikestring);
+    }
+    else
+    {
+        newlikestring= parseNewLikeString(id.toString());
+    }
+    data={
+        'id': id.toString(),
+        'likes': likes.toString(),
+        'user_token': localStorage.getItem('user_token'),
+        'type': type.toString(),
+        'newlikes': newlikestring
+    }
+
+    somestring = localStorage.getItem('likestring');
+    alert(somestring);
+    response = await axios.post('https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/like',data);
+}
+
+
+function parseNewLikeString(id_string){
+    somestring = localStorage.getItem('likestring');
+    work=1;
+    somestring = somestring.substring(somestring.indexOf('/')+1,somestring.length);
+    somenewstring='/';
+    do{
+        like=somestring.substring(0,somestring.indexOf('/'));
+        if (like!==id_string){
+
+            somenewstring=somenewstring+like+'/';
+        }
+        somestring=somestring.substring(somestring.indexOf('/')+1,somestring.length)
+        if (somestring.length==0) work=0 
+    }while(work===1)
+    
+    localStorage.removeItem('likestring');
+    localStorage.setItem('likestring',somenewstring);
+    return somenewstring;
+}
+
+
+async function CheckLike(){
+    if (localStorage.getItem('user_token')==null) return;
+    data={'user_token': localStorage.getItem('user_token')}
+    response = await axios.post('https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/like/likecheck',data);
+    data = await JSON.stringify(response);
+    var name = new String(data);
+    name=name.substring(name.indexOf('body'), name.length); 
+    name=name.substring(name.indexOf(':')+2, name.indexOf('}')-1);
+
+    localStorage.setItem('likestring',name);
+    work=1
+    if (name=='/')
+    { 
+        return;
+    }
+
+    name=name.substring(name.indexOf('/')+1,name.length);
+    do{
+        like=name.substring(0,name.indexOf('/'));
+        ToggleLikeFunc(like);
+        name=name.substring(name.indexOf('/')+1,name.length)
+        if (name.length==0) work=0
+    }while(work===1)
+}
+
+function ToggleLikeFunc(name){
+    id = name;
+    $(".inserthere").text("Полный рецепт:  "+$("#"+id).text());
+    $("#0"+id).addClass('btn-success').removeClass('btn-default');
+    $("#0"+id).toggleClass('liked');
+}
+
+
+async function UpdateDataProfile(){
+    if (localStorage.getItem('user_token')==null) return;
+    data={'user_token': localStorage.getItem('user_token')}
+    response = await axios.post('https://wm9vou161l.execute-api.us-east-1.amazonaws.com/test0/profile',data);
+    data = await JSON.stringify(response);
+    var name = new String(data);
+    name=name.substring(name.indexOf('body'), name.length); 
+    name=name.substring(name.indexOf(':')+2, name.indexOf('}'));
+    name=name.substring(name.indexOf("user_nickname"),name.length);
+    name=name.substring(name.indexOf(":")+2,name.length);
+    nickname=name.substring(0,name.indexOf('"'));
+    name=name.substring(name.indexOf("user_likes"),name.length);
+    likes=name.substring(name.indexOf(":")+1,name.length);
+
+    $("#sidestat label").remove();
+    $("#sidestat br").remove();
+    $("#sidestat").append("<p>Псевдоним: <br>"+nickname+"</p>")
+    $("#sidestat").append("<p>Лайки: <br>"+likes+"</p>")
+}

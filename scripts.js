@@ -33,8 +33,10 @@ $(document).ready(function()
 {
     var href = window.location.href.split('/');    
     var txt = href[href.length-1];
+
     if (txt==="myrecipes.html"){
         GetMyRecipes();
+        $("#div23").addClass("isDisabled");
     }
     else{
         if (txt==="login.html"||txt==="registration.html"){
@@ -44,9 +46,16 @@ $(document).ready(function()
         {
             if (txt==="home.html")
             {
+                $("#div23").addClass("isDisabled");
+                if (IfAuthorized()) 
+                {
+                    UpdateDataProfile();
+                    CheckLike();
+                }
                 GetAllRecipes();
 
             }
+            $("#div23").addClass("isDisabled");
         }
 
     }
